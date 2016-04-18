@@ -1,0 +1,2638 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introductory Tutorial &mdash; HoloCube</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/bootstrap.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/codehilite.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/rtd_bootstrap.css" type="text/css" />
+  
+    <link rel="top" title="HoloCube" href="index.html"/>
+        <link rel="prev" title="Introduction" href="index.html"/>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/theme.js"></script>
+      <script type="text/javascript" src="_static/bootstrap.js"></script>
+      <script type="text/javascript" src="_static/custom.js"></script>
+      <script type="text/javascript" src="_static/require.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+
+        
+
+        <a href="index.html" class="fa"> HoloCube</a>
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introductory Tutorial</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/CubeBrowser/cube-explorer">Github source</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">HoloCube</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="main">
+            
+  <div class="section" id="introductory-tutorial">
+<h1>Introductory Tutorial<a class="headerlink" href="#introductory-tutorial" title="Permalink to this headline">¶</a></h1>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The Iris cubes used in this notebook are publicly available in the <a href="https://github.com/SciTools/iris-sample-data"><code>SciTools/iris-sample-data</code></a> repository. This notebook is based on the user story described in <a href="https://github.com/CubeBrowser/cube-explorer/issues/7">Issue #7</a> with the following <a href="http://www.wetterzentrale.de/wz/pics/Recm1201.gif">image</a> suggested for inspiration.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">holoviews</span> <span class="kn">as</span> <span class="nn">hv</span>
+<span class="kn">import</span> <span class="nn">holocube</span> <span class="kn">as</span> <span class="nn">hc</span>
+<span class="kn">from</span> <span class="nn">cartopy</span> <span class="kn">import</span> <span class="n">crs</span>
+<span class="kn">from</span> <span class="nn">cartopy</span> <span class="kn">import</span> <span class="n">feature</span> <span class="k">as</span> <span class="n">cf</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">notebook_extension</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+<script type="text/javascript">function HoloViewsWidget(){
+}
+
+HoloViewsWidget.prototype.init_slider = function(init_val){
+	if(this.load_json) {
+		this.from_json()
+	} else {
+		this.update_cache();
+	}
+}
+
+HoloViewsWidget.prototype.populate_cache = function(idx){
+    this.cache[idx].html(this.frames[idx]);
+    if (this.embed) {
+        delete this.frames[idx];
+    }
+}
+
+HoloViewsWidget.prototype.process_error = function(msg){
+
+}
+
+HoloViewsWidget.prototype.from_json = function() {
+	var data_url = this.json_path + this.id + '.json';
+	$.getJSON(data_url, $.proxy(function(json_data) {
+		this.frames = json_data;
+		this.update_cache();
+		this.update(0);
+	}, this));
+}
+
+HoloViewsWidget.prototype.dynamic_update = function(current){
+    function callback(msg){
+        /* This callback receives data from Python as a string
+         in order to parse it correctly quotes are sliced off*/
+        var data = msg.content.data['text/plain'].slice(1, -1);
+        this.frames[current] = data;
+        this.update_cache();
+        this.update(current);
+    }
+    if(!(current in this.cache)) {
+        var kernel = IPython.notebook.kernel;
+        callbacks = {iopub: {output: $.proxy(callback, this)}};
+        var cmd = "holoviews.plotting.widgets.NdWidget.widgets['" + this.id + "'].update(" + current + ")";
+        kernel.execute("import holoviews;" + cmd, callbacks, {silent : false});
+    } else {
+        this.update(current);
+    }
+}
+
+HoloViewsWidget.prototype.update_cache = function(){
+    var frame_len = Object.keys(this.frames).length;
+    for (var i=0; i<frame_len; i++) {
+        if(!this.load_json || this.dynamic)  {
+            frame = Object.keys(this.frames)[i];
+        } else {
+            frame = i;
+        }
+        if(!(frame in this.cache)) {
+            this.cache[frame] = $('<div />').appendTo("#" + this.img_id).hide();
+            var cache_id = this.img_id+"_"+frame;
+            this.cache[frame].attr("id", cache_id);
+            this.populate_cache(frame);
+        }
+    }
+}
+
+HoloViewsWidget.prototype.update = function(current){
+    if(current in this.cache) {
+        $.each(this.cache, function(index, value) {
+            value.hide();
+        });
+        this.cache[current].show();
+		this.wait = false;
+    }
+}
+
+
+function SelectionWidget(frames, id, slider_ids, keyMap, dim_vals, notFound, load_json, mode, cached, json_path, dynamic){
+    this.frames = frames;
+    this.fig_id = "fig_" + id;
+    this.img_id = "_anim_img" + id;
+    this.id = id;
+    this.slider_ids = slider_ids;
+    this.keyMap = keyMap
+    this.current_frame = 0;
+    this.current_vals = dim_vals;
+    this.load_json = load_json;
+    this.mode = mode;
+    this.notFound = notFound;
+    this.cached = cached;
+    this.dynamic = dynamic;
+    this.cache = {};
+	this.json_path = json_path;
+    this.init_slider(this.current_vals[0]);
+	this.queue = [];
+	this.wait = false;
+}
+
+SelectionWidget.prototype = new HoloViewsWidget;
+
+
+SelectionWidget.prototype.get_key = function(current_vals) {
+	var key = "(";
+    for (var i=0; i<this.slider_ids.length; i++)
+    {
+        val = this.current_vals[i];
+        if (!(_.isString(val))) {
+            if (val % 1 === 0) { var fixed = 1;}
+            else { var fixed = 10;}
+            val = val.toFixed(fixed)
+        }
+        key += "'" + val + "'";
+        if(i != this.slider_ids.length-1) { key += ', ';}
+        else if(this.slider_ids.length == 1) { key += ',';}
+    }
+    key += ")";
+	return this.keyMap[key];
+}
+
+SelectionWidget.prototype.set_frame = function(dim_val, dim_idx){
+	this.current_vals[dim_idx] = dim_val;
+	if (this.dynamic || !this.cached) {
+		if (this.time === undefined) {
+			// Do nothing the first time
+		} else if ((this.timed === undefined) || ((this.time + this.timed) > Date.now())) {
+			var key = this.current_vals;
+			if (!this.dynamic) {
+				key = this.get_key(key);
+			}
+			this.queue.push(key);
+			return
+		}
+	}
+	this.queue = [];
+	this.time = Date.now();
+    if(this.dynamic) {
+        this.dynamic_update(this.current_vals)
+        return;
+    }
+    var current = this.get_key(this.current_vals);
+    this.current_frame = current;
+    if(this.cached) {
+        this.update(current)
+    } else {
+        this.dynamic_update(current)
+    }
+}
+
+
+/* Define the ScrubberWidget class */
+function ScrubberWidget(frames, num_frames, id, interval, load_json, mode, cached, json_path, dynamic){
+    this.img_id = "_anim_img" + id;
+    this.slider_id = "_anim_slider" + id;
+    this.loop_select_id = "_anim_loop_select" + id;
+    this.id = id;
+    this.fig_id = "fig_" + id;
+    this.interval = interval;
+    this.current_frame = 0;
+    this.direction = 0;
+    this.dynamic = dynamic;
+    this.timer = null;
+    this.load_json = load_json;
+    this.mode = mode;
+    this.cached = cached;
+    this.frames = frames;
+    this.cache = {};
+    this.length = num_frames;
+	this.json_path = json_path;
+    document.getElementById(this.slider_id).max = this.length - 1;
+    this.init_slider(0);
+	this.wait = false;
+	this.queue = [];
+}
+
+ScrubberWidget.prototype = new HoloViewsWidget;
+
+ScrubberWidget.prototype.set_frame = function(frame){
+	this.current_frame = frame;
+	widget = document.getElementById(this.slider_id);
+    if (widget === null) {
+        this.pause_animation();
+        return
+    }
+    widget.value = this.current_frame;
+    if(this.cached) {
+        this.update(frame)
+    } else {
+        this.dynamic_update(frame)
+    }
+}
+
+
+ScrubberWidget.prototype.process_error = function(msg){
+	if (msg.content.ename === 'StopIteration') {
+		this.pause_animation();
+		this.stopped = true;
+		var keys = Object.keys(this.frames)
+		this.length = keys.length;
+		document.getElementById(this.slider_id).max = this.length-1;
+		document.getElementById(this.slider_id).value = this.length-1;
+		this.current_frame = this.length-1;
+	}
+}
+
+
+ScrubberWidget.prototype.get_loop_state = function(){
+    var button_group = document[this.loop_select_id].state;
+    for (var i = 0; i < button_group.length; i++) {
+        var button = button_group[i];
+        if (button.checked) {
+            return button.value;
+        }
+    }
+    return undefined;
+}
+
+
+ScrubberWidget.prototype.next_frame = function() {
+	if (this.dynamic || !this.cached) {
+		if (this.wait) {
+			return
+		}
+		this.wait = true;
+	}
+	if (this.dynamic && this.current_frame + 1 >= this.length) {
+		this.length += 1;
+        document.getElementById(this.slider_id).max = this.length-1;
+	}
+    this.set_frame(Math.min(this.length - 1, this.current_frame + 1));
+}
+
+ScrubberWidget.prototype.previous_frame = function() {
+    this.set_frame(Math.max(0, this.current_frame - 1));
+}
+
+ScrubberWidget.prototype.first_frame = function() {
+    this.set_frame(0);
+}
+
+ScrubberWidget.prototype.last_frame = function() {
+    this.set_frame(this.length - 1);
+}
+
+ScrubberWidget.prototype.slower = function() {
+    this.interval /= 0.7;
+    if(this.direction > 0){this.play_animation();}
+    else if(this.direction < 0){this.reverse_animation();}
+}
+
+ScrubberWidget.prototype.faster = function() {
+    this.interval *= 0.7;
+    if(this.direction > 0){this.play_animation();}
+    else if(this.direction < 0){this.reverse_animation();}
+}
+
+ScrubberWidget.prototype.anim_step_forward = function() {
+    if(this.current_frame < this.length || (this.dynamic && !this.stopped)){
+        this.next_frame();
+    }else{
+        var loop_state = this.get_loop_state();
+        if(loop_state == "loop"){
+            this.first_frame();
+        }else if(loop_state == "reflect"){
+            this.last_frame();
+            this.reverse_animation();
+        }else{
+            this.pause_animation();
+            this.last_frame();
+        }
+    }
+}
+
+ScrubberWidget.prototype.anim_step_reverse = function() {
+    this.current_frame -= 1;
+    if(this.current_frame >= 0){
+        this.set_frame(this.current_frame);
+    } else {
+        var loop_state = this.get_loop_state();
+        if(loop_state == "loop"){
+            this.last_frame();
+        }else if(loop_state == "reflect"){
+            this.first_frame();
+            this.play_animation();
+        }else{
+            this.pause_animation();
+            this.first_frame();
+        }
+    }
+}
+
+ScrubberWidget.prototype.pause_animation = function() {
+    this.direction = 0;
+    if (this.timer){
+        clearInterval(this.timer);
+        this.timer = null;
+    }
+}
+
+ScrubberWidget.prototype.play_animation = function() {
+    this.pause_animation();
+    this.direction = 1;
+    var t = this;
+    if (!this.timer) this.timer = setInterval(function(){t.anim_step_forward();}, this.interval);
+}
+
+ScrubberWidget.prototype.reverse_animation = function() {
+    this.pause_animation();
+    this.direction = -1;
+    var t = this;
+    if (!this.timer) this.timer = setInterval(function(){t.anim_step_reverse();}, this.interval);
+}
+
+function extend(destination, source) {
+    for (var k in source) {
+        if (source.hasOwnProperty(k)) {
+            destination[k] = source[k];
+        }
+    }
+    return destination;
+}
+
+function update_widget(widget, values) {
+	if (widget.hasClass("ui-slider")) {
+		widget.slider('option',
+					  {'min': 0, 'max': values.length-1,
+					   'dim_vals': values, 'value': 0})
+		widget.slider('option', 'slide').call(widget, event, {'value': 0})
+	} else {
+		widget.empty();
+		for (var i=0; i<values.length; i++){
+			widget.append($("<option>", {
+				value: i,
+				text: values[i]
+			}))};
+		widget.trigger("change");
+	};
+}
+
+// Define Bokeh specific subclasses
+function BokehSelectionWidget() {
+	SelectionWidget.apply(this, arguments);
+}
+
+function BokehScrubberWidget() {
+	ScrubberWidget.apply(this, arguments);
+}
+
+// Let them inherit from the baseclasses
+BokehSelectionWidget.prototype = Object.create(SelectionWidget.prototype);
+BokehScrubberWidget.prototype = Object.create(ScrubberWidget.prototype);
+
+// Define methods to override on widgets
+var BokehMethods = {
+	update_cache : function(){
+		$.each(this.frames, $.proxy(function(index, frame) {
+			this.frames[index] = JSON.parse(frame);
+		}, this));
+	},
+	update : function(current){
+		if (current === undefined) {
+			var data = undefined;
+		} else {
+			var data = this.frames[current];
+		}
+		if (data !== undefined) {
+			if (data.root !== undefined) {
+				var doc = Bokeh.index[data.root].model.document;
+			}
+			$.each(data.data, function(i, value) {
+				if (data.root !== undefined) {
+					var ds = doc.get_model_by_id(value.id);
+				} else {
+					var ds = Bokeh.Collections(value.type).get(value.id);
+				}
+				if (ds != undefined) {
+					ds.set(value.data);
+					ds.trigger('change');
+				}
+			});
+		}
+	},
+	dynamic_update : function(current){
+		if (current === undefined) {
+			return
+		}
+		if(this.dynamic) {
+			current = JSON.stringify(current);
+		}
+		function callback(initialized, msg){
+			/* This callback receives data from Python as a string
+			   in order to parse it correctly quotes are sliced off*/
+			if (msg.content.ename != undefined) {
+				this.process_error(msg);
+			}
+			if (msg.msg_type != "execute_result") {
+				console.log("Warning: HoloViews callback returned unexpected data for key: (", current, ") with the following content:", msg.content)
+				this.time = undefined;
+				this.wait = false;
+				return
+			}
+			this.timed = (Date.now() - this.time) * 1.1;
+			if (msg.msg_type == "execute_result") {
+				if (msg.content.data['text/plain'] === "'Complete'") {
+					this.wait = false;
+					if (this.queue.length > 0) {
+						this.time = Date.now();
+						this.dynamic_update(this.queue[this.queue.length-1]);
+						this.queue = [];
+					}
+					return
+			    }
+				var data = msg.content.data['text/plain'].slice(1, -1);
+				this.frames[current] = JSON.parse(data);
+				this.update(current);
+			}
+		}
+		var kernel = IPython.notebook.kernel;
+		callbacks = {iopub: {output: $.proxy(callback, this, this.initialized)}};
+		var cmd = "holoviews.plotting.widgets.NdWidget.widgets['" + this.id + "'].update(" + current + ")";
+		kernel.execute("import holoviews;" + cmd, callbacks, {silent : false});
+	}
+}
+
+// Extend Bokeh widgets with backend specific methods
+extend(BokehSelectionWidget.prototype, BokehMethods);
+extend(BokehScrubberWidget.prototype, BokehMethods);
+
+// Define MPL specific subclasses
+function MPLSelectionWidget() {
+	SelectionWidget.apply(this, arguments);
+}
+
+function MPLScrubberWidget() {
+	ScrubberWidget.apply(this, arguments);
+}
+
+// Let them inherit from the baseclasses
+MPLSelectionWidget.prototype = Object.create(SelectionWidget.prototype);
+MPLScrubberWidget.prototype = Object.create(ScrubberWidget.prototype);
+
+// Define methods to override on widgets
+var MPLMethods = {
+	init_slider : function(init_val){
+		if(this.load_json) {
+			this.from_json()
+		} else {
+			this.update_cache();
+		}
+		this.update(0);
+		if(this.mode == 'nbagg') {
+			this.set_frame(init_val, 0);
+		}
+	},
+	populate_cache : function(idx){
+		var cache_id = this.img_id+"_"+idx;
+		if(this.mode == 'mpld3') {
+			mpld3.draw_figure(cache_id, this.frames[idx]);
+		} else {
+			this.cache[idx].html(this.frames[idx]);
+		}
+		if (this.embed) {
+			delete this.frames[idx];
+		}
+	},
+	dynamic_update : function(current){
+		if (this.dynamic) {
+			current = JSON.stringify(current);
+		}
+		function callback(msg){
+			/* This callback receives data from Python as a string
+			 in order to parse it correctly quotes are sliced off*/
+			if (msg.content.ename != undefined) {
+				this.process_error(msg);
+			}
+			if (msg.msg_type != "execute_result") {
+				console.log("Warning: HoloViews callback returned unexpected data for key: (", current, ") with the following content:", msg.content)
+				this.time = undefined;
+				return
+			}
+			if (!(this.mode == 'nbagg')) {
+				if(!(current in this.cache)) {
+					var data = msg.content.data['text/plain'].slice(1, -1);
+					if(this.mode == 'mpld3'){
+						data = JSON.parse(data)[0];
+					}
+					this.frames[current] = data;
+					this.update_cache();
+				}
+				this.update(current);
+			}
+			this.timed = (Date.now() - this.time) * 1.5;
+			this.wait = false;
+			if (this.queue.length > 0) {
+				var current_vals = this.queue[this.queue.length-1];
+				this.time = Date.now();
+				this.dynamic_update(current_vals);
+				this.queue = [];
+			}
+		}
+		var kernel = IPython.notebook.kernel;
+		callbacks = {iopub: {output: $.proxy(callback, this)}};
+		var cmd = "holoviews.plotting.widgets.NdWidget.widgets['" + this.id + "'].update(" + current + ")";
+		kernel.execute("import holoviews;" + cmd, callbacks, {silent : false});
+	}
+}
+
+// Extend MPL widgets with backend specific methods
+extend(MPLSelectionWidget.prototype, MPLMethods);
+extend(MPLScrubberWidget.prototype, MPLMethods);
+</script>
+
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<style>div.hololayout {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+div.holoframe {
+	width: 75%;
+}
+
+div.holowell {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+form.holoform {
+    background-color: #fafafa;
+    border-radius: 5px;
+    overflow: hidden;
+	padding-left: 0.8em;
+    padding-right: 0.8em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+}
+
+div.holowidgets {
+    padding-right: 0;
+	width: 25%;
+}
+
+div.holoslider {
+    min-height: 0 !important;
+    height: 0.8em;
+    width: 60%;
+}
+
+div.holoformgroup {
+    padding-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+div.hologroup {
+    padding-left: 0;
+    padding-right: 0.8em;
+    width: 50%;
+}
+
+.holoselect {
+    width: 92%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.holotext {
+    width: 100%;
+    padding-left:  0.5em;
+    padding-right: 0;
+}
+
+.ui-resizable-se {
+	visibility: hidden
+}
+
+.ui-resizable-s {
+	visibility: hidden
+}
+
+div.bk-hbox {
+    display: flex;
+    justify-content: center;
+}
+
+div.bk-hbox div.bk-plot {
+    padding: 8px;
+}
+
+div.bk-hbox div.bk-data-table {
+    padding: 20px;
+}
+</style>
+
+
+<div>
+<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wkCDDIOi3cusgAABT1JREFUOMtVlclvG2UYh3/fMovHe53FThySNHZomrRJl6QR0AJdpVblQBEHJC4ciipxAgmO3PgPEP8BQkIsRUJUSF1oqGih0JY2CtnjOLGz2Em8xPbMeL6Pw9RJOprLjPT+5tH7Pu83JE7pqeHh8wMD2evfyXMXf/nxB2FZo6dPNzVHvvr6GxMQeOEigARswNzzUgK6x8NagPzS0nqxODQ62nLn1xMnX99/eLC3sGVROj2/IBxHABKgANlzM4ACTuMRAOecNREiAWtzc0NIEu/M37zVMTWeqlrpUDg1M7NTVgdkowwvxqGRRV1CE8jOznq7uhYAi2CpXtdVVQE4QAAdCAAGwAAJyEa9Amh7PsAihBBAABrg1XUfpe3bxTXb8XR0WJa1VSzWGyAcUAEVoIAARIMOQH2HC4AA6lKW8/n9Pm/Ahl4zV8fGTg0PtzQ3K3tA3GId8AO+BqZLt8sFQKE0GouRSkWtFM63KV0Vy1rJhN44k56cFFI6exJ3MBWANACVHS63aw5QtutVVT/4xWfHv/0ylytmHvx56sIFLxACfIABGIAf8ANRn++9y5evXrkS0XWXd5dLJWRfOHwspA1tr4iFtP3gD8/apjCtSDiyQYhZKNA94wOQTCQPhfzm9FTJH8jn84Tz3SyPlEQ4vf0Dt5/MPE5vpVObzQbxqvaDdL731MnWnh5pmsxxdE3rTCZfO3u2FbL6+2+hzpcKwXA2ldrNUgAVII7TMXhkZnzcAQTgAWI6sgV7YmKivLra1tFxMJk4Ho/r5fLy3btsYS7JHL1YoeHQKldKhcLzLNcdlRDOWDgczuVyOtDt4yN9gRYVmc161TTLmYw9P9e8OHcU5dG2fa3EmhNyKjGwROmzZ8+YqlIAKsDd9jtOenIy1t8vgDJQtuvYrjRT0kMQBRIUQxqSXkSDUIO0YAulvdfxGk/u33eVZs2EeBvu6gCjtKW7Oz81xQBhI73mtATQn/BuZ6wTrezsYX+1Jn+aNR8sl9Zb47l4/O+HD2u27QDgnHUQwhvKuFmRaLS2tkZsmwJSQpqIUzHYyynndx5t/1Vy5gXyhMhorEJIKpViQB0QnFNlZzkbdExRhBAckIAFbFXFetkpg94er004WK6jCniamrRAYHlmxhXFtWTXVfW50SQYDjvVKm+YHVMR10G5VAGrcWAohkEVpbC1RRo7QN2mS0BzuQiJHziwMTurAwrgBTo95NVjnshb3XaF9q1MTM7VeWNv6kJQgAISYAAHuARUQAHA2NCZM35KJ27c6KA4YiBXJlpVro5bkaGN2mStsCy8gAXobpyU7iFhAgxQAB40jMHh4WhnJ6nVpsfGVjOZUQMhi40k9K1FqQZI4ogffd3k33GPobTb5kCIFmriEYjgnABao60KwD68eCnz5PH0vXsr4+OsVIpRvNmpnLvQEozRpm5vxAP107dx+RMlvGTcmw7Xle6DwZlsdbZY05qbAq2ta9msCkhAcM4+yv+3uFZWAA+gA5pEaUOUnpaMohb+/BK7+j76r4IliFoyAv9EjsZ4ZbMmyOKqmdvciiWTL4+OUsY8mkY554d7okGyciuHqgQFVIABlkJ9fV44FLFrz8ecuIZ3u6offzD1fSnFmJSgle35mzcdVQ1Eo23B4Eh7lJdWNgZGohM/r5QAjZEoaDzi0TfKPlFDV/KF35mqs0NN1v3iRrqqAT7Xbdti6UXPImKZaf5SQiUBtAIG0OVXXnmnDUJWb9nET7D8VPba7pAJTKRnxPUpI+v0BXlApZPrlgDaCTke1VqaaLZC/wesjSVVF5Ac7QAAAABJRU5ErkJggg=='
+     style='width:25px;height:25px; border-radius:12px;'/>
+
+HoloViewsJS successfully loaded in this cell.
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Setting-some-notebook-wide-options">Setting some notebook-wide options<a class="anchor-link" href="#Setting-some-notebook-wide-options">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's start by setting some normalization options (discussed below) and always enable colorbars for the elements we will be displaying:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="o">.</span><span class="n">strict_grib_load</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="o">%</span><span class="k">opts</span> Image {+framewise} [colorbar=True] Contours [colorbar=True] {+framewise} Curve [xrotation=60]
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that it is easy to set global defaults for a project allowing any suitable settings can be made into a default on a per-element basis. Now lets specify the maximum number of frames we will be displaying:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">output</span> max_frames=1000 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="alert alert-info" role="alert">When working on a live server append ``widgets='live'`` to the line above for greatly improved performance and memory usage </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Loading-our-first-cube">Loading our first cube<a class="anchor-link" href="#Loading-our-first-cube">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is the summary of the first cube containing some surface temperature data:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">iris_cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;GloSea4&#39;</span><span class="p">,</span> <span class="s1">&#39;ensemble_001.pp&#39;</span><span class="p">))</span>
+<span class="n">iris_cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
+<span class="n">iris_cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">iris_cube</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>surface_temperature / (K)           (time: 6; latitude: 145; longitude: 192)
+     Dimension coordinates:
+          time                           x            -               -
+          latitude                       -            x               -
+          longitude                      -            -               x
+     Auxiliary coordinates:
+          forecast_period                x            -               -
+     Scalar coordinates:
+          forecast_reference_time: 2011-07-18 00:00:00
+     Attributes:
+          STASH: m01s00i024
+          source: Data from Met Office Unified Model
+          um_version: 7.6
+     Cell methods:
+          mean: time (1 hour)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can wrap this Iris cube in a <code>HoloCube</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">HoloCube</span><span class="p">(</span><span class="n">iris_cube</span><span class="p">)</span>
+<span class="n">surface_temperature</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>:HoloCube   [time,longitude,latitude]   (surface_temperature)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="A-Simple-example">A Simple example<a class="anchor-link" href="#A-Simple-example">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is a simple example of viewing the <code>surface_temperature</code> cube over time with a single line of code. In HoloViews, this datastructure is a <code>HoloMap</code> of <code>Image</code> elements:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">surface_temperature</span><span class="o">.</span><span class="n">to</span><span class="o">.</span><span class="n">image</span><span class="p">([</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="hololayout row row-fluid">
+  <div class="holoframe" id="display_areab9c994cde8644bd7860b756115acee28">
+    <div id="_anim_imgb9c994cde8644bd7860b756115acee28">
+      
+      
+      
+    </div>
+  </div>
+  <div class="holowidgets" id="widget_areab9c994cde8644bd7860b756115acee28">
+    <form class="holoform well" id="formb9c994cde8644bd7860b756115acee28">
+      
+      
+      <div class="form-group control-group holoformgroup" style=''>
+        <label for="textInputb9c994cde8644bd7860b756115acee28_time">
+          <strong>time:</strong>
+        </label>
+        <div class="holowell row row-fluid">
+          <div class="hologroup">
+            <input type="text" class="holotext form-control input-small"
+                   id="textInputb9c994cde8644bd7860b756115acee28_time" value="" readonly>
+          </div>
+          <div class="holoslider"
+               id="_anim_widgetb9c994cde8644bd7860b756115acee28_time"></div>
+        </div>
+      </div>
+	  <script>
+        // Slider JS Block START
+        function loadcssfile(filename){
+            var fileref=document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", filename)
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        loadcssfile("https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+        /* Check if jQuery and jQueryUI have been loaded
+           otherwise load with require.js */
+        var jQuery = window.jQuery,
+            // check for old versions of jQuery
+            oldjQuery = jQuery && !!jQuery.fn.jquery.match(/^1\.[0-4](\.|$)/),
+            jquery_path = '',
+            paths = {},
+            noConflict;
+        var jQueryUI = jQuery.ui;
+        // check for jQuery
+        if (!jQuery || oldjQuery) {
+            // load if it's not available or doesn't meet min standards
+            paths.jQuery = jQuery;
+            noConflict = !!oldjQuery;
+        } else {
+            // register the current jQuery
+            define('jquery', [], function() { return jQuery; });
+        }
+        if (!jQueryUI) {
+            paths.jQueryUI = "https://code.jquery.com/ui/1.10.4/jquery-ui.min"
+        } else {
+            define('jQueryUI', [], function() { return jQuery.ui; });
+        }
+        paths.underscore = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min";
+        var jquery_require = {
+            paths: paths,
+            shim: {
+                "jQueryUI": {
+                    exports:"$",
+                    deps: ['jquery']
+                },
+                "underscore": {
+                    exports: '_'
+                }
+            }
+        }
+        require.config(jquery_require);
+        require(["jQueryUI", "underscore"], function(jUI, _){
+            if (noConflict) $.noConflict(true);
+            var vals = ['364860.0', '365592.0', '366324.0', '367056.0', '367788.0', '368532.0'];
+            var next_vals = {};
+            if (false && vals.constructor === Array) {
+                var min = parseFloat(vals[0]);
+                var max = parseFloat(vals[vals.length-1]);
+                var step = 1;
+                var labels = [min];
+            } else {
+                var min = 0;
+                if (false) {
+                    var max = Object.keys(vals).length - 1;
+                } else {
+                    var max = vals.length - 1;
+                }
+                var step = 1;
+				var labels = ['2011-08-16 12:00:00', '2011-09-16 00:00:00', '2011-10-16 12:00:00', '2011-11-16 00:00:00', '2011-12-16 12:00:00', '2012-01-16 12:00:00'];
+            }
+			function adjustFontSize(text) {
+				var width_ratio = (text.parent().width()/8)/text.val().length;
+				var size = Math.min(0.9, Math.max(0.6, width_ratio))+'em';
+				text.css('font-size', size);
+			}
+            var slider = $('#_anim_widgetb9c994cde8644bd7860b756115acee28_time');
+            slider.slider({
+                animate: "fast",
+                min: min,
+                max: max,
+                step: step,
+                value: min,
+                dim_vals: vals,
+                dim_labels: labels,
+                next_vals: next_vals,
+                slide: function(event, ui) {
+                    var vals = slider.slider("option", "dim_vals");
+                    var next_vals = slider.slider("option", "next_vals");
+                    var labels = slider.slider("option", "dim_labels");
+                    if (false && vals.constructor === Array) {
+                        var dim_val = ui.value;
+						var label = ui.value;
+                    } else {
+                        var dim_val = vals[ui.value];
+						var label = labels[ui.value];
+                    }
+					var text = $('#textInputb9c994cde8644bd7860b756115acee28_time');
+					text.val(label);
+					adjustFontSize(text);
+                    animb9c994cde8644bd7860b756115acee28.set_frame(dim_val, 0);
+                    if (Object.keys(next_vals).length > 0) {
+                        var new_vals = next_vals[dim_val];
+                        var next_widget = $('#_anim_widgetb9c994cde8644bd7860b756115acee28_');
+                        update_widget(next_widget, new_vals);
+                    }
+                }
+            });
+            slider.keypress(function(event) {
+                if (event.which == 80 || event.which == 112) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "max");
+                    for (var i=start; i<=stop; i++) {
+                        var delay = i*50;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+                if (event.which == 82 || event.which == 114) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "min");
+                    var count = 0;
+                    for (var i=start; i>=stop; i--) {
+                        var delay = count*50;
+                        count = count + 1;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+            });
+			var textInput = $('#textInputb9c994cde8644bd7860b756115acee28_time')
+			textInput.val(labels[0]);
+			adjustFontSize(textInput);
+        });
+        // Slider JS Block END
+        </script>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+/* Instantiate the MPLSelectionWidget class. */
+/* The IDs given should match those used in the template above. */
+(function() {
+	if (jQuery.ui !== undefined) {
+		$("#display_areab9c994cde8644bd7860b756115acee28").resizable({
+			resize: function(event, ui) {
+				$("#widget_areab9c994cde8644bd7860b756115acee28").width($(this).parent().width()-ui.size.width);
+			}
+		});
+		$("#widget_areab9c994cde8644bd7860b756115acee28").resizable();
+	}
+    var widget_ids = new Array(1);
+    
+    widget_ids[0] = "_anim_widgetb9c994cde8644bd7860b756115acee28_time";
+    
+    var frame_data = {};
+    var dim_vals = ['364860.0'];
+    var keyMap = {"('364860.0',)": 0, "('365592.0',)": 1, "('366324.0',)": 2, "('367056.0',)": 3, "('367788.0',)": 4, "('368532.0',)": 5};
+    var notFound = "<h2 style='vertical-align: middle>No frame at selected dimension value.<h2>";
+    function create_widget() {
+        setTimeout(function() {
+            animb9c994cde8644bd7860b756115acee28 = new MPLSelectionWidget(frame_data, "b9c994cde8644bd7860b756115acee28", widget_ids,
+				keyMap, dim_vals, notFound, true, 'default',
+				true, "/json/", false);
+        }, 0);
+    }
+    
+
+
+    create_widget();
+    
+
+
+})();
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can drag the slider to view the surface temperature at different times. Here is how you can view the values of time in the cube via the HoloViews API:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">surface_temperature</span><span class="o">.</span><span class="n">dimension_values</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 364860.,  364860.,  364860., ...,  368532.,  368532.,  368532.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The times shown in the slider are long making the text rather small. We can use the fact that all times are recorded in the year 2011 on the 16th of each month to shorten these dates. Defining how all dates should be formatted as follows will help with readability:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">hv</span><span class="o">.</span><span class="n">Dimension</span><span class="o">.</span><span class="n">type_formatters</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;%m/%y %Hh&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let us load a cube showing the pre-industrial air temperature:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">air_temperature</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">HoloCube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;pre-industrial.pp&#39;</span><span class="p">)),</span>
+                             <span class="n">group</span><span class="o">=</span><span class="s1">&#39;Pre-industrial air temperature&#39;</span><span class="p">)</span>
+<span class="n">air_temperature</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
+<span class="n">air_temperature</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
+<span class="n">air_temperature</span>     <span class="c1"># Use air_temperature.data.summary() to see the Iris summary (.data is the Iris cube)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>:HoloCube   [longitude,latitude]   (air_temperature)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that we have the <code>air_temperature</code> available over <code>longitude</code> and <code>latitude</code> but <em>not</em> the <code>time</code> dimensions. As a result, this cube is a single frame when visualized as a temperature map.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">(</span><span class="n">surface_temperature</span><span class="o">.</span><span class="n">to</span><span class="o">.</span><span class="n">image</span><span class="p">([</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">])</span>  <span class="o">+</span> <span class="n">air_temperature</span><span class="o">.</span><span class="n">to</span><span class="o">.</span><span class="n">image</span><span class="p">([</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="hololayout row row-fluid">
+  <div class="holoframe" id="display_areac6e9340b5f524c1c992a6220da2b0b2b">
+    <div id="_anim_imgc6e9340b5f524c1c992a6220da2b0b2b">
+      
+      
+      
+    </div>
+  </div>
+  <div class="holowidgets" id="widget_areac6e9340b5f524c1c992a6220da2b0b2b">
+    <form class="holoform well" id="formc6e9340b5f524c1c992a6220da2b0b2b">
+      
+      
+      <div class="form-group control-group holoformgroup" style=''>
+        <label for="textInputc6e9340b5f524c1c992a6220da2b0b2b_time">
+          <strong>time:</strong>
+        </label>
+        <div class="holowell row row-fluid">
+          <div class="hologroup">
+            <input type="text" class="holotext form-control input-small"
+                   id="textInputc6e9340b5f524c1c992a6220da2b0b2b_time" value="" readonly>
+          </div>
+          <div class="holoslider"
+               id="_anim_widgetc6e9340b5f524c1c992a6220da2b0b2b_time"></div>
+        </div>
+      </div>
+	  <script>
+        // Slider JS Block START
+        function loadcssfile(filename){
+            var fileref=document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", filename)
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        loadcssfile("https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+        /* Check if jQuery and jQueryUI have been loaded
+           otherwise load with require.js */
+        var jQuery = window.jQuery,
+            // check for old versions of jQuery
+            oldjQuery = jQuery && !!jQuery.fn.jquery.match(/^1\.[0-4](\.|$)/),
+            jquery_path = '',
+            paths = {},
+            noConflict;
+        var jQueryUI = jQuery.ui;
+        // check for jQuery
+        if (!jQuery || oldjQuery) {
+            // load if it's not available or doesn't meet min standards
+            paths.jQuery = jQuery;
+            noConflict = !!oldjQuery;
+        } else {
+            // register the current jQuery
+            define('jquery', [], function() { return jQuery; });
+        }
+        if (!jQueryUI) {
+            paths.jQueryUI = "https://code.jquery.com/ui/1.10.4/jquery-ui.min"
+        } else {
+            define('jQueryUI', [], function() { return jQuery.ui; });
+        }
+        paths.underscore = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min";
+        var jquery_require = {
+            paths: paths,
+            shim: {
+                "jQueryUI": {
+                    exports:"$",
+                    deps: ['jquery']
+                },
+                "underscore": {
+                    exports: '_'
+                }
+            }
+        }
+        require.config(jquery_require);
+        require(["jQueryUI", "underscore"], function(jUI, _){
+            if (noConflict) $.noConflict(true);
+            var vals = ['364860.0', '365592.0', '366324.0', '367056.0', '367788.0', '368532.0'];
+            var next_vals = {};
+            if (false && vals.constructor === Array) {
+                var min = parseFloat(vals[0]);
+                var max = parseFloat(vals[vals.length-1]);
+                var step = 1;
+                var labels = [min];
+            } else {
+                var min = 0;
+                if (false) {
+                    var max = Object.keys(vals).length - 1;
+                } else {
+                    var max = vals.length - 1;
+                }
+                var step = 1;
+				var labels = ['2011-08-16 12:00:00', '2011-09-16 00:00:00', '2011-10-16 12:00:00', '2011-11-16 00:00:00', '2011-12-16 12:00:00', '2012-01-16 12:00:00'];
+            }
+			function adjustFontSize(text) {
+				var width_ratio = (text.parent().width()/8)/text.val().length;
+				var size = Math.min(0.9, Math.max(0.6, width_ratio))+'em';
+				text.css('font-size', size);
+			}
+            var slider = $('#_anim_widgetc6e9340b5f524c1c992a6220da2b0b2b_time');
+            slider.slider({
+                animate: "fast",
+                min: min,
+                max: max,
+                step: step,
+                value: min,
+                dim_vals: vals,
+                dim_labels: labels,
+                next_vals: next_vals,
+                slide: function(event, ui) {
+                    var vals = slider.slider("option", "dim_vals");
+                    var next_vals = slider.slider("option", "next_vals");
+                    var labels = slider.slider("option", "dim_labels");
+                    if (false && vals.constructor === Array) {
+                        var dim_val = ui.value;
+						var label = ui.value;
+                    } else {
+                        var dim_val = vals[ui.value];
+						var label = labels[ui.value];
+                    }
+					var text = $('#textInputc6e9340b5f524c1c992a6220da2b0b2b_time');
+					text.val(label);
+					adjustFontSize(text);
+                    animc6e9340b5f524c1c992a6220da2b0b2b.set_frame(dim_val, 0);
+                    if (Object.keys(next_vals).length > 0) {
+                        var new_vals = next_vals[dim_val];
+                        var next_widget = $('#_anim_widgetc6e9340b5f524c1c992a6220da2b0b2b_');
+                        update_widget(next_widget, new_vals);
+                    }
+                }
+            });
+            slider.keypress(function(event) {
+                if (event.which == 80 || event.which == 112) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "max");
+                    for (var i=start; i<=stop; i++) {
+                        var delay = i*50;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+                if (event.which == 82 || event.which == 114) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "min");
+                    var count = 0;
+                    for (var i=start; i>=stop; i--) {
+                        var delay = count*50;
+                        count = count + 1;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+            });
+			var textInput = $('#textInputc6e9340b5f524c1c992a6220da2b0b2b_time')
+			textInput.val(labels[0]);
+			adjustFontSize(textInput);
+        });
+        // Slider JS Block END
+        </script>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+/* Instantiate the MPLSelectionWidget class. */
+/* The IDs given should match those used in the template above. */
+(function() {
+	if (jQuery.ui !== undefined) {
+		$("#display_areac6e9340b5f524c1c992a6220da2b0b2b").resizable({
+			resize: function(event, ui) {
+				$("#widget_areac6e9340b5f524c1c992a6220da2b0b2b").width($(this).parent().width()-ui.size.width);
+			}
+		});
+		$("#widget_areac6e9340b5f524c1c992a6220da2b0b2b").resizable();
+	}
+    var widget_ids = new Array(1);
+    
+    widget_ids[0] = "_anim_widgetc6e9340b5f524c1c992a6220da2b0b2b_time";
+    
+    var frame_data = {};
+    var dim_vals = ['364860.0'];
+    var keyMap = {"('364860.0',)": 0, "('365592.0',)": 1, "('366324.0',)": 2, "('367056.0',)": 3, "('367788.0',)": 4, "('368532.0',)": 5};
+    var notFound = "<h2 style='vertical-align: middle>No frame at selected dimension value.<h2>";
+    function create_widget() {
+        setTimeout(function() {
+            animc6e9340b5f524c1c992a6220da2b0b2b = new MPLSelectionWidget(frame_data, "c6e9340b5f524c1c992a6220da2b0b2b", widget_ids,
+				keyMap, dim_vals, notFound, true, 'default',
+				true, "/json/", false);
+        }, 0);
+    }
+    
+
+
+    create_widget();
+    
+
+
+})();
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next is a fairly involved example that plots data side-by-side in a <code>Layout</code> without using the <code>+</code> operator.</p>
+<p>This shows how complex plots can be generated with little code and also demonstrates how different HoloViews elements can be combined together. In the following visualization, the curve is a sample of the <code>surface_temperature</code> at longitude and latitude <em>(0,10)</em>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">opts</span> Layout [fig_inches=(12,7)] Curve [aspect=2 xticks=4 xrotation=20] Points (color=2)
+# Sample the surface_temperature at (0,10)
+temp_curve = surface_temperature.to.curve(&#39;time&#39;, dynamic=True)[0, 10]
+# Show surface_temperature and air_temperature with Point (0,10) marked
+temp_maps = [cb.to.image([&#39;longitude&#39;, &#39;latitude&#39;]) * hc.Points([(0,10)]) 
+             for cb in [surface_temperature, air_temperature]]
+# Show everything in a two column layout
+hv.Layout(temp_maps + [temp_curve]).cols(2).display(&#39;all&#39;)
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="hololayout row row-fluid">
+  <div class="holoframe" id="display_areafe452ac81f35412881ded26e2366b4d7">
+    <div id="_anim_imgfe452ac81f35412881ded26e2366b4d7">
+      
+      
+      
+    </div>
+  </div>
+  <div class="holowidgets" id="widget_areafe452ac81f35412881ded26e2366b4d7">
+    <form class="holoform well" id="formfe452ac81f35412881ded26e2366b4d7">
+      
+      
+      <div class="form-group control-group holoformgroup" style=''>
+        <label for="textInputfe452ac81f35412881ded26e2366b4d7_time">
+          <strong>time:</strong>
+        </label>
+        <div class="holowell row row-fluid">
+          <div class="hologroup">
+            <input type="text" class="holotext form-control input-small"
+                   id="textInputfe452ac81f35412881ded26e2366b4d7_time" value="" readonly>
+          </div>
+          <div class="holoslider"
+               id="_anim_widgetfe452ac81f35412881ded26e2366b4d7_time"></div>
+        </div>
+      </div>
+	  <script>
+        // Slider JS Block START
+        function loadcssfile(filename){
+            var fileref=document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", filename)
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        loadcssfile("https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+        /* Check if jQuery and jQueryUI have been loaded
+           otherwise load with require.js */
+        var jQuery = window.jQuery,
+            // check for old versions of jQuery
+            oldjQuery = jQuery && !!jQuery.fn.jquery.match(/^1\.[0-4](\.|$)/),
+            jquery_path = '',
+            paths = {},
+            noConflict;
+        var jQueryUI = jQuery.ui;
+        // check for jQuery
+        if (!jQuery || oldjQuery) {
+            // load if it's not available or doesn't meet min standards
+            paths.jQuery = jQuery;
+            noConflict = !!oldjQuery;
+        } else {
+            // register the current jQuery
+            define('jquery', [], function() { return jQuery; });
+        }
+        if (!jQueryUI) {
+            paths.jQueryUI = "https://code.jquery.com/ui/1.10.4/jquery-ui.min"
+        } else {
+            define('jQueryUI', [], function() { return jQuery.ui; });
+        }
+        paths.underscore = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min";
+        var jquery_require = {
+            paths: paths,
+            shim: {
+                "jQueryUI": {
+                    exports:"$",
+                    deps: ['jquery']
+                },
+                "underscore": {
+                    exports: '_'
+                }
+            }
+        }
+        require.config(jquery_require);
+        require(["jQueryUI", "underscore"], function(jUI, _){
+            if (noConflict) $.noConflict(true);
+            var vals = ['364860.0', '365592.0', '366324.0', '367056.0', '367788.0', '368532.0'];
+            var next_vals = {};
+            if (false && vals.constructor === Array) {
+                var min = parseFloat(vals[0]);
+                var max = parseFloat(vals[vals.length-1]);
+                var step = 1;
+                var labels = [min];
+            } else {
+                var min = 0;
+                if (false) {
+                    var max = Object.keys(vals).length - 1;
+                } else {
+                    var max = vals.length - 1;
+                }
+                var step = 1;
+				var labels = ['2011-08-16 12:00:00', '2011-09-16 00:00:00', '2011-10-16 12:00:00', '2011-11-16 00:00:00', '2011-12-16 12:00:00', '2012-01-16 12:00:00'];
+            }
+			function adjustFontSize(text) {
+				var width_ratio = (text.parent().width()/8)/text.val().length;
+				var size = Math.min(0.9, Math.max(0.6, width_ratio))+'em';
+				text.css('font-size', size);
+			}
+            var slider = $('#_anim_widgetfe452ac81f35412881ded26e2366b4d7_time');
+            slider.slider({
+                animate: "fast",
+                min: min,
+                max: max,
+                step: step,
+                value: min,
+                dim_vals: vals,
+                dim_labels: labels,
+                next_vals: next_vals,
+                slide: function(event, ui) {
+                    var vals = slider.slider("option", "dim_vals");
+                    var next_vals = slider.slider("option", "next_vals");
+                    var labels = slider.slider("option", "dim_labels");
+                    if (false && vals.constructor === Array) {
+                        var dim_val = ui.value;
+						var label = ui.value;
+                    } else {
+                        var dim_val = vals[ui.value];
+						var label = labels[ui.value];
+                    }
+					var text = $('#textInputfe452ac81f35412881ded26e2366b4d7_time');
+					text.val(label);
+					adjustFontSize(text);
+                    animfe452ac81f35412881ded26e2366b4d7.set_frame(dim_val, 0);
+                    if (Object.keys(next_vals).length > 0) {
+                        var new_vals = next_vals[dim_val];
+                        var next_widget = $('#_anim_widgetfe452ac81f35412881ded26e2366b4d7_');
+                        update_widget(next_widget, new_vals);
+                    }
+                }
+            });
+            slider.keypress(function(event) {
+                if (event.which == 80 || event.which == 112) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "max");
+                    for (var i=start; i<=stop; i++) {
+                        var delay = i*50;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+                if (event.which == 82 || event.which == 114) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "min");
+                    var count = 0;
+                    for (var i=start; i>=stop; i--) {
+                        var delay = count*50;
+                        count = count + 1;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+            });
+			var textInput = $('#textInputfe452ac81f35412881ded26e2366b4d7_time')
+			textInput.val(labels[0]);
+			adjustFontSize(textInput);
+        });
+        // Slider JS Block END
+        </script>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+/* Instantiate the MPLSelectionWidget class. */
+/* The IDs given should match those used in the template above. */
+(function() {
+	if (jQuery.ui !== undefined) {
+		$("#display_areafe452ac81f35412881ded26e2366b4d7").resizable({
+			resize: function(event, ui) {
+				$("#widget_areafe452ac81f35412881ded26e2366b4d7").width($(this).parent().width()-ui.size.width);
+			}
+		});
+		$("#widget_areafe452ac81f35412881ded26e2366b4d7").resizable();
+	}
+    var widget_ids = new Array(1);
+    
+    widget_ids[0] = "_anim_widgetfe452ac81f35412881ded26e2366b4d7_time";
+    
+    var frame_data = {};
+    var dim_vals = ['364860.0'];
+    var keyMap = {"('364860.0',)": 0, "('365592.0',)": 1, "('366324.0',)": 2, "('367056.0',)": 3, "('367788.0',)": 4, "('368532.0',)": 5};
+    var notFound = "<h2 style='vertical-align: middle>No frame at selected dimension value.<h2>";
+    function create_widget() {
+        setTimeout(function() {
+            animfe452ac81f35412881ded26e2366b4d7 = new MPLSelectionWidget(frame_data, "fe452ac81f35412881ded26e2366b4d7", widget_ids,
+				keyMap, dim_vals, notFound, true, 'default',
+				true, "/json/", false);
+        }, 0);
+    }
+    
+
+
+    create_widget();
+    
+
+
+})();
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Overlaying-data-and-normalization">Overlaying data and normalization<a class="anchor-link" href="#Overlaying-data-and-normalization">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lets view the surface temperatures together with the global coastline:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cf</span><span class="o">.</span><span class="n">COASTLINE</span><span class="o">.</span><span class="n">scale</span><span class="o">=</span><span class="s1">&#39;1000m&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">opts</span> Image [projection=crs.Geostationary()] (cmap=&#39;Greens&#39;)
+surface_temperature.to.image([&#39;longitude&#39;, &#39;latitude&#39;]) * hc.GeoFeature(cf.COASTLINE)
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="hololayout row row-fluid">
+  <div class="holoframe" id="display_areae8502cb13d2b4919a3da9efd2705f96a">
+    <div id="_anim_imge8502cb13d2b4919a3da9efd2705f96a">
+      
+      
+      
+    </div>
+  </div>
+  <div class="holowidgets" id="widget_areae8502cb13d2b4919a3da9efd2705f96a">
+    <form class="holoform well" id="forme8502cb13d2b4919a3da9efd2705f96a">
+      
+      
+      <div class="form-group control-group holoformgroup" style=''>
+        <label for="textInpute8502cb13d2b4919a3da9efd2705f96a_time">
+          <strong>time:</strong>
+        </label>
+        <div class="holowell row row-fluid">
+          <div class="hologroup">
+            <input type="text" class="holotext form-control input-small"
+                   id="textInpute8502cb13d2b4919a3da9efd2705f96a_time" value="" readonly>
+          </div>
+          <div class="holoslider"
+               id="_anim_widgete8502cb13d2b4919a3da9efd2705f96a_time"></div>
+        </div>
+      </div>
+	  <script>
+        // Slider JS Block START
+        function loadcssfile(filename){
+            var fileref=document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", filename)
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        loadcssfile("https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+        /* Check if jQuery and jQueryUI have been loaded
+           otherwise load with require.js */
+        var jQuery = window.jQuery,
+            // check for old versions of jQuery
+            oldjQuery = jQuery && !!jQuery.fn.jquery.match(/^1\.[0-4](\.|$)/),
+            jquery_path = '',
+            paths = {},
+            noConflict;
+        var jQueryUI = jQuery.ui;
+        // check for jQuery
+        if (!jQuery || oldjQuery) {
+            // load if it's not available or doesn't meet min standards
+            paths.jQuery = jQuery;
+            noConflict = !!oldjQuery;
+        } else {
+            // register the current jQuery
+            define('jquery', [], function() { return jQuery; });
+        }
+        if (!jQueryUI) {
+            paths.jQueryUI = "https://code.jquery.com/ui/1.10.4/jquery-ui.min"
+        } else {
+            define('jQueryUI', [], function() { return jQuery.ui; });
+        }
+        paths.underscore = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min";
+        var jquery_require = {
+            paths: paths,
+            shim: {
+                "jQueryUI": {
+                    exports:"$",
+                    deps: ['jquery']
+                },
+                "underscore": {
+                    exports: '_'
+                }
+            }
+        }
+        require.config(jquery_require);
+        require(["jQueryUI", "underscore"], function(jUI, _){
+            if (noConflict) $.noConflict(true);
+            var vals = ['364860.0', '365592.0', '366324.0', '367056.0', '367788.0', '368532.0'];
+            var next_vals = {};
+            if (false && vals.constructor === Array) {
+                var min = parseFloat(vals[0]);
+                var max = parseFloat(vals[vals.length-1]);
+                var step = 1;
+                var labels = [min];
+            } else {
+                var min = 0;
+                if (false) {
+                    var max = Object.keys(vals).length - 1;
+                } else {
+                    var max = vals.length - 1;
+                }
+                var step = 1;
+				var labels = ['2011-08-16 12:00:00', '2011-09-16 00:00:00', '2011-10-16 12:00:00', '2011-11-16 00:00:00', '2011-12-16 12:00:00', '2012-01-16 12:00:00'];
+            }
+			function adjustFontSize(text) {
+				var width_ratio = (text.parent().width()/8)/text.val().length;
+				var size = Math.min(0.9, Math.max(0.6, width_ratio))+'em';
+				text.css('font-size', size);
+			}
+            var slider = $('#_anim_widgete8502cb13d2b4919a3da9efd2705f96a_time');
+            slider.slider({
+                animate: "fast",
+                min: min,
+                max: max,
+                step: step,
+                value: min,
+                dim_vals: vals,
+                dim_labels: labels,
+                next_vals: next_vals,
+                slide: function(event, ui) {
+                    var vals = slider.slider("option", "dim_vals");
+                    var next_vals = slider.slider("option", "next_vals");
+                    var labels = slider.slider("option", "dim_labels");
+                    if (false && vals.constructor === Array) {
+                        var dim_val = ui.value;
+						var label = ui.value;
+                    } else {
+                        var dim_val = vals[ui.value];
+						var label = labels[ui.value];
+                    }
+					var text = $('#textInpute8502cb13d2b4919a3da9efd2705f96a_time');
+					text.val(label);
+					adjustFontSize(text);
+                    anime8502cb13d2b4919a3da9efd2705f96a.set_frame(dim_val, 0);
+                    if (Object.keys(next_vals).length > 0) {
+                        var new_vals = next_vals[dim_val];
+                        var next_widget = $('#_anim_widgete8502cb13d2b4919a3da9efd2705f96a_');
+                        update_widget(next_widget, new_vals);
+                    }
+                }
+            });
+            slider.keypress(function(event) {
+                if (event.which == 80 || event.which == 112) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "max");
+                    for (var i=start; i<=stop; i++) {
+                        var delay = i*50;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+                if (event.which == 82 || event.which == 114) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "min");
+                    var count = 0;
+                    for (var i=start; i>=stop; i--) {
+                        var delay = count*50;
+                        count = count + 1;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+            });
+			var textInput = $('#textInpute8502cb13d2b4919a3da9efd2705f96a_time')
+			textInput.val(labels[0]);
+			adjustFontSize(textInput);
+        });
+        // Slider JS Block END
+        </script>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+/* Instantiate the MPLSelectionWidget class. */
+/* The IDs given should match those used in the template above. */
+(function() {
+	if (jQuery.ui !== undefined) {
+		$("#display_areae8502cb13d2b4919a3da9efd2705f96a").resizable({
+			resize: function(event, ui) {
+				$("#widget_areae8502cb13d2b4919a3da9efd2705f96a").width($(this).parent().width()-ui.size.width);
+			}
+		});
+		$("#widget_areae8502cb13d2b4919a3da9efd2705f96a").resizable();
+	}
+    var widget_ids = new Array(1);
+    
+    widget_ids[0] = "_anim_widgete8502cb13d2b4919a3da9efd2705f96a_time";
+    
+    var frame_data = {};
+    var dim_vals = ['364860.0'];
+    var keyMap = {"('364860.0',)": 0, "('365592.0',)": 1, "('366324.0',)": 2, "('367056.0',)": 3, "('367788.0',)": 4, "('368532.0',)": 5};
+    var notFound = "<h2 style='vertical-align: middle>No frame at selected dimension value.<h2>";
+    function create_widget() {
+        setTimeout(function() {
+            anime8502cb13d2b4919a3da9efd2705f96a = new MPLSelectionWidget(frame_data, "e8502cb13d2b4919a3da9efd2705f96a", widget_ids,
+				keyMap, dim_vals, notFound, true, 'default',
+				true, "/json/", false);
+        }, 0);
+    }
+    
+
+
+    create_widget();
+    
+
+
+})();
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that every frame uses the full dynamic range of the Greens color map. This is because normalization is set to <code>+framewise</code> at the top of the notebook which means every frame is normalized independently.</p>
+<p>To control normalization, we need to decide on the normalization limits. Let's see the maximum temperature in the cube:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">max_surface_temp</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">max_surface_temp</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>317.33179</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">opts</span> Image [projection=crs.Geostationary()] (cmap=&#39;Greens&#39;)
+# Declare a humidity dimension with a range from 0 to 0.01
+surface_temp_dim = hv.Dimension(&#39;surface_temperature&#39;, range=(300, max_surface_temp))
+# Use it to declare the value dimension of a HoloCube
+(hc.HoloCube(surface_temperature, vdims=[surface_temp_dim]).to.image([&#39;longitude&#39;, &#39;latitude&#39;]) * hc.GeoFeature(cf.COASTLINE))
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="hololayout row row-fluid">
+  <div class="holoframe" id="display_areaf078fb7984a14168a54f8e7cf4c8d11b">
+    <div id="_anim_imgf078fb7984a14168a54f8e7cf4c8d11b">
+      
+      
+      
+    </div>
+  </div>
+  <div class="holowidgets" id="widget_areaf078fb7984a14168a54f8e7cf4c8d11b">
+    <form class="holoform well" id="formf078fb7984a14168a54f8e7cf4c8d11b">
+      
+      
+      <div class="form-group control-group holoformgroup" style=''>
+        <label for="textInputf078fb7984a14168a54f8e7cf4c8d11b_time">
+          <strong>time:</strong>
+        </label>
+        <div class="holowell row row-fluid">
+          <div class="hologroup">
+            <input type="text" class="holotext form-control input-small"
+                   id="textInputf078fb7984a14168a54f8e7cf4c8d11b_time" value="" readonly>
+          </div>
+          <div class="holoslider"
+               id="_anim_widgetf078fb7984a14168a54f8e7cf4c8d11b_time"></div>
+        </div>
+      </div>
+	  <script>
+        // Slider JS Block START
+        function loadcssfile(filename){
+            var fileref=document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", filename)
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        loadcssfile("https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+        /* Check if jQuery and jQueryUI have been loaded
+           otherwise load with require.js */
+        var jQuery = window.jQuery,
+            // check for old versions of jQuery
+            oldjQuery = jQuery && !!jQuery.fn.jquery.match(/^1\.[0-4](\.|$)/),
+            jquery_path = '',
+            paths = {},
+            noConflict;
+        var jQueryUI = jQuery.ui;
+        // check for jQuery
+        if (!jQuery || oldjQuery) {
+            // load if it's not available or doesn't meet min standards
+            paths.jQuery = jQuery;
+            noConflict = !!oldjQuery;
+        } else {
+            // register the current jQuery
+            define('jquery', [], function() { return jQuery; });
+        }
+        if (!jQueryUI) {
+            paths.jQueryUI = "https://code.jquery.com/ui/1.10.4/jquery-ui.min"
+        } else {
+            define('jQueryUI', [], function() { return jQuery.ui; });
+        }
+        paths.underscore = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min";
+        var jquery_require = {
+            paths: paths,
+            shim: {
+                "jQueryUI": {
+                    exports:"$",
+                    deps: ['jquery']
+                },
+                "underscore": {
+                    exports: '_'
+                }
+            }
+        }
+        require.config(jquery_require);
+        require(["jQueryUI", "underscore"], function(jUI, _){
+            if (noConflict) $.noConflict(true);
+            var vals = ['364860.0', '365592.0', '366324.0', '367056.0', '367788.0', '368532.0'];
+            var next_vals = {};
+            if (false && vals.constructor === Array) {
+                var min = parseFloat(vals[0]);
+                var max = parseFloat(vals[vals.length-1]);
+                var step = 1;
+                var labels = [min];
+            } else {
+                var min = 0;
+                if (false) {
+                    var max = Object.keys(vals).length - 1;
+                } else {
+                    var max = vals.length - 1;
+                }
+                var step = 1;
+				var labels = ['2011-08-16 12:00:00', '2011-09-16 00:00:00', '2011-10-16 12:00:00', '2011-11-16 00:00:00', '2011-12-16 12:00:00', '2012-01-16 12:00:00'];
+            }
+			function adjustFontSize(text) {
+				var width_ratio = (text.parent().width()/8)/text.val().length;
+				var size = Math.min(0.9, Math.max(0.6, width_ratio))+'em';
+				text.css('font-size', size);
+			}
+            var slider = $('#_anim_widgetf078fb7984a14168a54f8e7cf4c8d11b_time');
+            slider.slider({
+                animate: "fast",
+                min: min,
+                max: max,
+                step: step,
+                value: min,
+                dim_vals: vals,
+                dim_labels: labels,
+                next_vals: next_vals,
+                slide: function(event, ui) {
+                    var vals = slider.slider("option", "dim_vals");
+                    var next_vals = slider.slider("option", "next_vals");
+                    var labels = slider.slider("option", "dim_labels");
+                    if (false && vals.constructor === Array) {
+                        var dim_val = ui.value;
+						var label = ui.value;
+                    } else {
+                        var dim_val = vals[ui.value];
+						var label = labels[ui.value];
+                    }
+					var text = $('#textInputf078fb7984a14168a54f8e7cf4c8d11b_time');
+					text.val(label);
+					adjustFontSize(text);
+                    animf078fb7984a14168a54f8e7cf4c8d11b.set_frame(dim_val, 0);
+                    if (Object.keys(next_vals).length > 0) {
+                        var new_vals = next_vals[dim_val];
+                        var next_widget = $('#_anim_widgetf078fb7984a14168a54f8e7cf4c8d11b_');
+                        update_widget(next_widget, new_vals);
+                    }
+                }
+            });
+            slider.keypress(function(event) {
+                if (event.which == 80 || event.which == 112) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "max");
+                    for (var i=start; i<=stop; i++) {
+                        var delay = i*50;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+                if (event.which == 82 || event.which == 114) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "min");
+                    var count = 0;
+                    for (var i=start; i>=stop; i--) {
+                        var delay = count*50;
+                        count = count + 1;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+            });
+			var textInput = $('#textInputf078fb7984a14168a54f8e7cf4c8d11b_time')
+			textInput.val(labels[0]);
+			adjustFontSize(textInput);
+        });
+        // Slider JS Block END
+        </script>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+/* Instantiate the MPLSelectionWidget class. */
+/* The IDs given should match those used in the template above. */
+(function() {
+	if (jQuery.ui !== undefined) {
+		$("#display_areaf078fb7984a14168a54f8e7cf4c8d11b").resizable({
+			resize: function(event, ui) {
+				$("#widget_areaf078fb7984a14168a54f8e7cf4c8d11b").width($(this).parent().width()-ui.size.width);
+			}
+		});
+		$("#widget_areaf078fb7984a14168a54f8e7cf4c8d11b").resizable();
+	}
+    var widget_ids = new Array(1);
+    
+    widget_ids[0] = "_anim_widgetf078fb7984a14168a54f8e7cf4c8d11b_time";
+    
+    var frame_data = {};
+    var dim_vals = ['364860.0'];
+    var keyMap = {"('364860.0',)": 0, "('365592.0',)": 1, "('366324.0',)": 2, "('367056.0',)": 3, "('367788.0',)": 4, "('368532.0',)": 5};
+    var notFound = "<h2 style='vertical-align: middle>No frame at selected dimension value.<h2>";
+    function create_widget() {
+        setTimeout(function() {
+            animf078fb7984a14168a54f8e7cf4c8d11b = new MPLSelectionWidget(frame_data, "f078fb7984a14168a54f8e7cf4c8d11b", widget_ids,
+				keyMap, dim_vals, notFound, true, 'default',
+				true, "/json/", false);
+        }, 0);
+    }
+    
+
+
+    create_widget();
+    
+
+
+})();
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By specifying the normalization range we can reveal different aspects of the data. In the example above we can see a warming effect over time as the dark green areas close to the bottom of the normalization range (200K) vanish. Values outside this range are clipped to the ends of the color map.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lastly, here is a demo of a conversion from <code>surface_temperature</code> to <code>Contours</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">opts</span> Contours [levels=10]
+(surface_temperature.to.contours([&#39;longitude&#39;, &#39;latitude&#39;]) * hc.GeoFeature(cf.COASTLINE))
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="hololayout row row-fluid">
+  <div class="holoframe" id="display_area6e8a23635dd245cb98f359c9e8a1a0e4">
+    <div id="_anim_img6e8a23635dd245cb98f359c9e8a1a0e4">
+      
+      
+      
+    </div>
+  </div>
+  <div class="holowidgets" id="widget_area6e8a23635dd245cb98f359c9e8a1a0e4">
+    <form class="holoform well" id="form6e8a23635dd245cb98f359c9e8a1a0e4">
+      
+      
+      <div class="form-group control-group holoformgroup" style=''>
+        <label for="textInput6e8a23635dd245cb98f359c9e8a1a0e4_time">
+          <strong>time:</strong>
+        </label>
+        <div class="holowell row row-fluid">
+          <div class="hologroup">
+            <input type="text" class="holotext form-control input-small"
+                   id="textInput6e8a23635dd245cb98f359c9e8a1a0e4_time" value="" readonly>
+          </div>
+          <div class="holoslider"
+               id="_anim_widget6e8a23635dd245cb98f359c9e8a1a0e4_time"></div>
+        </div>
+      </div>
+	  <script>
+        // Slider JS Block START
+        function loadcssfile(filename){
+            var fileref=document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", filename)
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        loadcssfile("https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+        /* Check if jQuery and jQueryUI have been loaded
+           otherwise load with require.js */
+        var jQuery = window.jQuery,
+            // check for old versions of jQuery
+            oldjQuery = jQuery && !!jQuery.fn.jquery.match(/^1\.[0-4](\.|$)/),
+            jquery_path = '',
+            paths = {},
+            noConflict;
+        var jQueryUI = jQuery.ui;
+        // check for jQuery
+        if (!jQuery || oldjQuery) {
+            // load if it's not available or doesn't meet min standards
+            paths.jQuery = jQuery;
+            noConflict = !!oldjQuery;
+        } else {
+            // register the current jQuery
+            define('jquery', [], function() { return jQuery; });
+        }
+        if (!jQueryUI) {
+            paths.jQueryUI = "https://code.jquery.com/ui/1.10.4/jquery-ui.min"
+        } else {
+            define('jQueryUI', [], function() { return jQuery.ui; });
+        }
+        paths.underscore = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min";
+        var jquery_require = {
+            paths: paths,
+            shim: {
+                "jQueryUI": {
+                    exports:"$",
+                    deps: ['jquery']
+                },
+                "underscore": {
+                    exports: '_'
+                }
+            }
+        }
+        require.config(jquery_require);
+        require(["jQueryUI", "underscore"], function(jUI, _){
+            if (noConflict) $.noConflict(true);
+            var vals = ['364860.0', '365592.0', '366324.0', '367056.0', '367788.0', '368532.0'];
+            var next_vals = {};
+            if (false && vals.constructor === Array) {
+                var min = parseFloat(vals[0]);
+                var max = parseFloat(vals[vals.length-1]);
+                var step = 1;
+                var labels = [min];
+            } else {
+                var min = 0;
+                if (false) {
+                    var max = Object.keys(vals).length - 1;
+                } else {
+                    var max = vals.length - 1;
+                }
+                var step = 1;
+				var labels = ['2011-08-16 12:00:00', '2011-09-16 00:00:00', '2011-10-16 12:00:00', '2011-11-16 00:00:00', '2011-12-16 12:00:00', '2012-01-16 12:00:00'];
+            }
+			function adjustFontSize(text) {
+				var width_ratio = (text.parent().width()/8)/text.val().length;
+				var size = Math.min(0.9, Math.max(0.6, width_ratio))+'em';
+				text.css('font-size', size);
+			}
+            var slider = $('#_anim_widget6e8a23635dd245cb98f359c9e8a1a0e4_time');
+            slider.slider({
+                animate: "fast",
+                min: min,
+                max: max,
+                step: step,
+                value: min,
+                dim_vals: vals,
+                dim_labels: labels,
+                next_vals: next_vals,
+                slide: function(event, ui) {
+                    var vals = slider.slider("option", "dim_vals");
+                    var next_vals = slider.slider("option", "next_vals");
+                    var labels = slider.slider("option", "dim_labels");
+                    if (false && vals.constructor === Array) {
+                        var dim_val = ui.value;
+						var label = ui.value;
+                    } else {
+                        var dim_val = vals[ui.value];
+						var label = labels[ui.value];
+                    }
+					var text = $('#textInput6e8a23635dd245cb98f359c9e8a1a0e4_time');
+					text.val(label);
+					adjustFontSize(text);
+                    anim6e8a23635dd245cb98f359c9e8a1a0e4.set_frame(dim_val, 0);
+                    if (Object.keys(next_vals).length > 0) {
+                        var new_vals = next_vals[dim_val];
+                        var next_widget = $('#_anim_widget6e8a23635dd245cb98f359c9e8a1a0e4_');
+                        update_widget(next_widget, new_vals);
+                    }
+                }
+            });
+            slider.keypress(function(event) {
+                if (event.which == 80 || event.which == 112) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "max");
+                    for (var i=start; i<=stop; i++) {
+                        var delay = i*50;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+                if (event.which == 82 || event.which == 114) {
+                    var start = slider.slider("option", "value");
+                    var stop =  slider.slider("option", "min");
+                    var count = 0;
+                    for (var i=start; i>=stop; i--) {
+                        var delay = count*50;
+                        count = count + 1;
+                        $.proxy(function doSetTimeout(i) { setTimeout($.proxy(function() {
+                            var val = {value:i};
+                            slider.slider('value',i);
+                            slider.slider("option", "slide")(null, val);
+                        }, slider), delay);}, slider)(i);
+                    }
+                }
+            });
+			var textInput = $('#textInput6e8a23635dd245cb98f359c9e8a1a0e4_time')
+			textInput.val(labels[0]);
+			adjustFontSize(textInput);
+        });
+        // Slider JS Block END
+        </script>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+<script language="javascript">
+/* Instantiate the MPLSelectionWidget class. */
+/* The IDs given should match those used in the template above. */
+(function() {
+	if (jQuery.ui !== undefined) {
+		$("#display_area6e8a23635dd245cb98f359c9e8a1a0e4").resizable({
+			resize: function(event, ui) {
+				$("#widget_area6e8a23635dd245cb98f359c9e8a1a0e4").width($(this).parent().width()-ui.size.width);
+			}
+		});
+		$("#widget_area6e8a23635dd245cb98f359c9e8a1a0e4").resizable();
+	}
+    var widget_ids = new Array(1);
+    
+    widget_ids[0] = "_anim_widget6e8a23635dd245cb98f359c9e8a1a0e4_time";
+    
+    var frame_data = {};
+    var dim_vals = ['364860.0'];
+    var keyMap = {"('364860.0',)": 0, "('365592.0',)": 1, "('366324.0',)": 2, "('367056.0',)": 3, "('367788.0',)": 4, "('368532.0',)": 5};
+    var notFound = "<h2 style='vertical-align: middle>No frame at selected dimension value.<h2>";
+    function create_widget() {
+        setTimeout(function() {
+            anim6e8a23635dd245cb98f359c9e8a1a0e4 = new MPLSelectionWidget(frame_data, "6e8a23635dd245cb98f359c9e8a1a0e4", widget_ids,
+				keyMap, dim_vals, notFound, true, 'default',
+				true, "/json/", false);
+        }, 0);
+    }
+    
+
+
+    create_widget();
+    
+
+
+})();
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Introduction"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, HoloCube developers.
+    </p>
+  </div>
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
